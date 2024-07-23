@@ -1,4 +1,6 @@
 <template>
+  <button @click="exportTasks" class="btn btn-secondary">Export Tasks</button>
+  <button @click="importTasks" class="btn btn-secondary">Import Tasks</button>
   <div class="scrum-board-boundary">
     <div class="scrum-board">
       <ScrumColumn
@@ -9,8 +11,6 @@
       />
     </div>
   </div>
-  <button @click="importTasks" class="btn btn-secondary">Import Tasks</button>
-  <button @click="exportTasks" class="btn btn-secondary">Export Tasks</button>
 </template>
 
 <script>
@@ -66,5 +66,18 @@ export default {
 .scrum-board {
   display: flex;
   justify-content: space-around;
+}
+
+button {
+margin: 10px;
+  padding: 8px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #007bff;
+  color: white;
 }
 </style>

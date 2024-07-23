@@ -55,6 +55,7 @@ export default {
               <p>Assignee: ${this.task.assignee}</p>
               <p>Status: ${this.task.status}</p>
               <p>Due Date: ${this.task.dueDate}</p>
+              <p>Spent Time: ${this.task.spentTime}</p>
               <p>Priority: ${this.task.priority}</p>
             `;
       this.isModalVisible = true;
