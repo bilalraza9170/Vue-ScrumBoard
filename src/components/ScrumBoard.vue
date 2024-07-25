@@ -1,6 +1,7 @@
 <template>
   <button @click="exportTasks" class="btn btn-secondary">Export Tasks</button>
   <button @click="importTasks" class="btn btn-secondary">Import Tasks</button>
+
   <div class="scrum-board-boundary">
     <div class="scrum-board">
       <ScrumColumn
@@ -8,7 +9,8 @@
         :key="column.id"
         :column="column"
         @update-task="updateTaskInColumn"
-      />
+      >
+      </ScrumColumn>
     </div>
   </div>
 </template>
@@ -23,9 +25,9 @@ export default {
     columns: Array,
   },
   methods: {
-    updateTaskInColumn(updatedTask) {
-      this.$emit("update-task", updatedTask);
-    },
+    // updateTaskInColumn(updatedTask) {
+    //   this.$emit("update-task", updatedTask);
+    // },
     saveTasks() {
       localStorage.setItem("columns", JSON.stringify(this.columns));
     },
@@ -69,7 +71,7 @@ export default {
 }
 
 button {
-margin: 10px;
+  margin: 10px;
   padding: 8px;
   border: none;
   border-radius: 4px;
@@ -80,4 +82,5 @@ button:hover {
   background-color: #007bff;
   color: white;
 }
+
 </style>

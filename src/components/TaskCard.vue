@@ -8,7 +8,7 @@
     <p>Description: {{ task.description }}</p>
     <p>Priority: {{ task.priority }}</p>
     <p>Assignee: {{ task.assignee }}</p>
-    <button @click.stop="editTask" class="btn btn-link">Edit</button>
+    <button @click="showEditModal" class="btn btn-link">Edit</button>
     <Modal
       :isVisible="isModalVisible"
       :title="'Task Details'"
@@ -31,6 +31,7 @@ export default {
     return {
       isModalVisible: false,
       taskDetailsContent: "",
+      taskTitle: "",
     };
   },
   computed: {
@@ -63,8 +64,22 @@ export default {
     hideModal() {
       this.isModalVisible = false;
     },
-    editTask() {
-      this.$emit("edit-task", this.task); // Emit event with the task
+    showEditModal() {
+      // Similar to showModal, but prepare the modal for editing
+      this.taskDetailsContent = `
+      <form @submit.prevent="confirmEdit">
+        <input v-model="task.name" placeholder="Task Name">
+        <textarea v-model="task.description" placeholder="Task Description"></textarea>
+        <!-- More fields as needed -->
+        <button type="submit">Save Changes</button>
+      </form>
+    `;
+      this.isModalVisible = true;
+    },
+    confirmEdit() {
+      // Emit an event to notify the parent component about the edit
+      this.$emit("edit-task", this.task);
+      this.hideModal();
     },
   },
 };

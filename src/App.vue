@@ -31,31 +31,31 @@ export default {
     addTask(newTask) {
       const backlogColumn = this.columns.find((column) => column.id === 1);
       if (backlogColumn) {
-        backlogColumn.tasks.push(newTask);
-        this.tasks.push(newTask);
+        backlogColumn.tasks.unshift(newTask);
+        this.tasks.unshift(newTask);
         this.saveData();
       }
     },
-    updateTask(updatedTask) {
-      const taskIndex = this.tasks.findIndex(
-        (task) => task.id === updatedTask.id
-      );
-      if (taskIndex !== -1) {
-        this.tasks[taskIndex] = updatedTask;
-        this.updateColumnTasks(updatedTask);
-        this.saveData();
-      }
-    },
-    updateColumnTasks(updatedTask) {
-      this.columns.forEach((column) => {
-        const taskIndex = column.tasks.findIndex(
-          (task) => task.id === updatedTask.id
-        );
-        if (taskIndex !== -1) {
-          column.tasks.splice(taskIndex, 1, updatedTask);
-        }
-      });
-    },
+    // updateTask(updatedTask) {
+    //   const taskIndex = this.tasks.findIndex(
+    //     (task) => task.id === updatedTask.id
+    //   );
+    //   if (taskIndex !== -1) {
+    //     this.tasks[taskIndex] = updatedTask;
+    //     this.updateColumnTasks(updatedTask);
+    //     this.saveData();
+    //   }
+    // },
+    // updateColumnTasks(updatedTask) {
+    //   this.columns.forEach((column) => {
+    //     const taskIndex = column.tasks.findIndex(
+    //       (task) => task.id === updatedTask.id
+    //     );
+    //     if (taskIndex !== -1) {
+    //       column.tasks.splice(taskIndex, 1, updatedTask);
+    //     }
+    //   });
+    // },
     toggleForm() {
       this.$refs.taskForm.toggleForm();
     },
